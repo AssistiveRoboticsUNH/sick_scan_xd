@@ -13,10 +13,12 @@ else()
 endif()
 
 # LDMRS build options
+
 if(WIN32)
     option(BUILD_WITH_LDMRS_SUPPORT "Build sick_scan_xd with LDMRS support (requires libsick_ldmrs from https://github.com/SICKAG/libsick_ldmrs" OFF)
 elseif(LDMRS EQUAL 0)
     option(BUILD_WITH_LDMRS_SUPPORT "Build sick_scan_xd with LDMRS support (requires libsick_ldmrs from https://github.com/SICKAG/libsick_ldmrs" OFF)
+    set(BUILD_WITH_LDMRS_SUPPORT 0)
 else()
     option(BUILD_WITH_LDMRS_SUPPORT "Build sick_scan_xd with LDMRS support (requires libsick_ldmrs from https://github.com/SICKAG/libsick_ldmrs" ON)
 endif()
@@ -303,7 +305,8 @@ if(ROS_VERSION EQUAL 2)
 endif(ROS_VERSION EQUAL 2)
 
 # Support for LDMRS
-if(BUILD_WITH_LDMRS_SUPPORT)
+if(${BUILD_WITH_LDMRS_SUPPORT})
+    message(ssddzdzfvzsfviugwiuegiuhgiuweiu ${BUILD_WITH_LDMRS_SUPPORT})
     message(STATUS "Building sick_scan with LDMRS support")
     add_compile_options(-DLDMRS_SUPPORT=1)
     find_package(SickLDMRS REQUIRED)
